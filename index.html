@@ -1,0 +1,66 @@
+<!-- NJIT default user homepage version 20070214 -->
+<html>
+	<head>
+		<title>Daniel Homepage</title>
+	</head>
+<body>
+	<h2>Daniels Homepage in Folder IS218</h2>
+	This person or group has not created their own homepage.
+
+
+<h4>Login</h4>
+<form method="POST">
+	
+	<label for="email">Email
+	<input type="email" id="email" name="email" autocomplete="off" />
+	</label>
+	
+	<label for="p">Password
+	<input type="password" id="p" name="password" autocomplete="off"/>
+	</label>
+	
+	<input type="submit" name="login" value="Login"/>
+</form>
+
+<?php
+
+
+if(isset($_POST["login"])){
+	if(isset($_POST["password"]) && isset($_POST["email"])){
+		$password = $_POST["password"];
+		$email = $_POST["email"];
+			
+			$errors = [];
+			if(!strrpos ($email , '@' ) )
+			{
+
+				array_push($errors, "Invalid email");
+
+			}
+			
+			if(empty($email)){
+
+				array_push($errors, "Must enter email");
+
+			}
+
+			if(empty($password)){
+	
+				array_push($errors, "Must enter Password");
+			}
+			
+			if(count($errors) > 0){
+
+				echo var_export($errors);
+				die();
+
+			}
+	}
+
+	echo $email;
+	echo $password;
+}
+?>
+
+	</body>
+</html>
