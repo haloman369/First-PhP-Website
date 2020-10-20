@@ -50,7 +50,7 @@ if(isset($_POST["forum"])){
 			if(!strrpos ($questionSkills , ',' ) )
 			{
 
-				array_push($errors, "Needs a comma to seperaet entries");
+				array_push($errors, "Needs a comma to seperate entries");
 
 			}
 			
