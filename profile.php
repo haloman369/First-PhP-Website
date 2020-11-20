@@ -31,7 +31,14 @@ $questions=$statement->fetchAll();
 $statement->closeCursor();
 //print_r($questions);
 
-
+$query = "select fname, lname from accounts where id=:userId";
+$statement = $db->prepare($query); 
+$statement->bindValue(':fname', $fname);
+$statement->bindValue(':lname', $lname);
+$statement->execute();
+$user=$statement->fetch();
+$statement->closeCursor();
+print_r($user);
 
 ?>
 <h4>Profile</h4>
