@@ -1,5 +1,4 @@
 <?php
-<link rel="stylesheet" type="text/css" href="style.css">
 $username = 'ddd9';
 $password = 'Southpark2!';
 $hostname = 'sql1.njit.edu';

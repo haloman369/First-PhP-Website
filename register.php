@@ -1,4 +1,7 @@
+<?php
+require('header.php')
 
+?>
 <nav>
     <ul>     
         <li>
@@ -76,7 +79,7 @@ if(isset($_POST["register"])){
 
 			}
 
-				if(empty($birt)){
+				if(empty($birthday)){
 
 				array_push($errors, "Must enter your birthday");
 
@@ -99,6 +102,11 @@ if(isset($_POST["register"])){
 
 			}
 	}
+	echo $firstName . "<br>";
+	echo $lastName . "<br>";
+	echo $birthday . "<br>";
+	echo $email . "<br>";
+	echo $password . "<br>";
 
 	$query = 'INSERT INTO accounts
             (email, fname, lname, birthday, password)
@@ -107,6 +115,7 @@ if(isset($_POST["register"])){
 
     // Create PDO Statement
     $statement = $db->prepare($query);
+
 
     // Bind Form Values to SQL
     $statement->bindValue(':email', $email);
@@ -120,11 +129,9 @@ if(isset($_POST["register"])){
 
     // Close the database
     $statement->closeCursor();
+    
 
-	echo $firstName . "<br>";
-	echo $lastName . "<br>";
-	echo $birthday . "<br>";
-	echo $email . "<br>";
-	echo $password . "<br>";
+	//header("Location: login.php");
+	
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require('pdo.php');
+require('header.php');
 
 ?>
 
@@ -76,5 +76,29 @@ if(isset($_POST["login"])){
 	echo $email . "<br>";
 
 	echo $password;
+
+	$query = "select * from accounts where email=:email and password=:password";
+
+	$statement = $db->prepare($query); 
+
+	// Bind Form Values to SQL
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $password);
+
+    // Execute the SQL Query
+    $statement->execute();
+
+    $user = $statement->fetch();
+    $isValidLogin = count($user) > 0;
+    if (!$isValidLogin) {
+        $statement->closeCursor();
+        die();
+    } else {
+        $userId = $user['id'];
+        $statement->closeCursor();
+        header("Location: profile.php?userId=$userId");
+    } 
+
+
 }
 ?>

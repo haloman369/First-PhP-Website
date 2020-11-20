@@ -1,11 +1,14 @@
+<?php
+require('header.php');
+?>
+
 
 <html>
 	<head>
 		<title>Daniel Homepage</title>
 	</head>
 <body>
-	<h2>Daniels Homepage in Folder IS218</h2>
-	You can navigate from here to see the different forms with error checking!
+
 <nav>
     <ul>     
         <li>
@@ -19,6 +22,11 @@
         </li>
     </ul>
 </nav>
+
+    
+	<h4>Daniels Homepage in Folder IS218</h4>
+	You can navigate from here to see the different forms with error checking!
+
 
 
 	</body>

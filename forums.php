@@ -1,3 +1,9 @@
+<?php
+
+require('header.php');
+$userId=$_GET["userId"];
+?>
+
 
 <nav>
     <ul>     
@@ -28,6 +34,7 @@
 	<input type="questionSkills" id="questionSkills" name="questionSkills" autocomplete="off" />
 	</label>
 
+	<input type="hidden" name="userId" value="<?php echo $userId; ?>">
 	
 	<input type="submit" name="forum" value="Forum"/>
 </form>
@@ -41,6 +48,8 @@ if(isset($_POST["forum"])){
 		$questionName = $_POST["questionName"];
 		$questionBody = $_POST["questionBody"];
 		$questionSkills = $_POST["questionSkills"];
+		$userId=$_POST["userId"];
+		
 			
 			$errors = [];
 			$skills = explode(',', $questionSkills);
@@ -113,6 +122,24 @@ if(isset($_POST["forum"])){
 		echo "Skill $i $skills[$i] <br>";
 	}
 
-	
+
+	$query = 'INSERT INTO questions
+            (ownerid, title, body, skills)
+          VALUES
+            (:userId, :questionName, :questionBody, :questionSkills)';
+
+	$statement = $db->prepare($query); 
+
+	// Bind Form Values to SQL
+    $statement->bindValue(':userId', $userId);
+    $statement->bindValue(':questionName', $questionName);
+    $statement->bindValue(':questionBody', $questionBody);
+    $statement->bindValue(':questionSkills', $questionSkills);
+
+    // Execute the SQL Query
+    $statement->execute();
+
+	$statement->closeCursor();
+	header("Location: profile.php?userId=$userId");
 }
 ?>
