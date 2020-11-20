@@ -1,3 +1,9 @@
+<?php
+
+require('pdo.php');
+
+?>
+
 
 <nav>
     <ul>     
