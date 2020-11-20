@@ -129,9 +129,9 @@ if(isset($_POST["register"])){
 
     // Close the database
     $statement->closeCursor();
-    
 
-	//header("Location: login.php");
+
+	header("Location: login.php");
 	
 }
 ?>
