@@ -1,0 +1,33 @@
+input {
+    background-color: aquamarine;
+}
+label {
+    border: 1px dotted black;
+}
+body {
+	padding-top: 0px;
+	background-color: aqua;
+
+}
+form {
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    background-color: aqua;
+}
+
+#form1{
+
+
+	margin-top:0%;
+}
+
+h1{
+    font-size: 20px;
+}
+h4{
+
+    margin-top:5%;
+    margin-bottom:5%;
+}
