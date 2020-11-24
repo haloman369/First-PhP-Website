@@ -89,6 +89,21 @@ if(isset($_POST["login"])){
     $statement->execute();
 
     $user = $statement->fetch();
+    
+    echo $user['email'];
+    echo strcmp($user['email'],$email);
+    if(strcmp($user['email'],$email)==0){
+    	echo "strings are equal";
+    	$userId = $user['id'];
+        $statement->closeCursor();
+        header("Location: profile.php?userId=$userId");
+    }
+    else{
+    	echo "login name is not found in the database";
+    	$statement->closeCursor();
+        die();
+    }
+
     $isValidLogin = count($user) > 0;
     if (!$isValidLogin) {
         $statement->closeCursor();
@@ -96,7 +111,7 @@ if(isset($_POST["login"])){
     } else {
         $userId = $user['id'];
         $statement->closeCursor();
-        header("Location: profile.php?userId=$userId");
+        //header("Location: profile.php?userId=$userId");
     } 
 
 

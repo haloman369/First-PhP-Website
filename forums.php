@@ -36,7 +36,7 @@ $userId=$_GET["userId"];
 
 	<input type="hidden" name="userId" value="<?php echo $userId; ?>">
 	
-	<input type="submit" name="forum" value="Forum"/>
+	<input type="submit" name="forum" value="Submit"/>
 </form>
 
 <?php
