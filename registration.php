@@ -4,7 +4,7 @@
     <h1>Registration</h1>
 
     <form action="index.php" method="post">
-    <input type="hidden" name="action" value="validate_login">
+    <input type="hidden" name="action" value="register_user">
 
     <div class="form-group">
         <label for="first_name">First Name</label>

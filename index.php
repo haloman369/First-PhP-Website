@@ -42,6 +42,67 @@ switch ($action) {
         break;
     }
 
+    case'submit_registration':{
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        $firstName = filter_input(INPUT_POST, 'firstName');
+        $lastName = filter_input(INPUT_POST, 'lastName');
+        $birthday = filter_input(INPUT_POST, 'birthday');
+        $errors = [];
+        if(!strrpos ($email , '@' ) )
+            {
+
+                array_push($errors, "Invalid email");
+
+            }
+            
+        if(empty($email)){
+
+                array_push($errors, "Must enter email");
+
+            }
+
+        if(empty($firstName)){
+
+                array_push($errors, "Must enter your first name");
+
+            }
+
+        if(empty($lastName)){
+
+                array_push($errors, "Must enter your last name");
+
+            }
+
+        if(empty($birthday)){
+
+                array_push($errors, "Must enter your birthday");
+
+            }
+
+        if(empty($password)){
+    
+                array_push($errors, "Must enter Password");
+            }
+
+        if(strlen($password) <= 8){
+
+                array_push($errors, "Password must be 8 or more characters");
+            }
+            
+        if(count($errors) > 0){
+
+                echo var_export($errors);
+                die();
+
+            }
+        register_user($email, $password, $firstName, $lastName, $birthday);
+        header('Location: .?action=display_login');
+        break;
+
+
+
+    }
 
     case 'display_questions': {
         $userId = filter_input(INPUT_GET, 'userId');

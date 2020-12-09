@@ -42,11 +42,31 @@ function validate_login($email, $password) {
 }
 
 
-function register_user($email, $password, $first_name, $last_name, $birthday) {
+function register_user($email, $password, $firstName, $lastName, $birthday) {
 
     global $db;
 
+    $query = 'INSERT INTO accounts
+            (email, fname, lname, birthday, password)
+          VALUES
+            (:email, :fname, :lname, :birthday, :password)';
 
+    // Create PDO Statement
+    $statement = $db->prepare($query);
+
+
+    // Bind Form Values to SQL
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':fname', $firstName);
+    $statement->bindValue(':lname', $lastName);
+    $statement->bindValue(':birthday', $birthday);
+    $statement->bindValue(':password', $password);
+
+    // Execute the SQL Query
+    $statement->execute();
+
+    // Close the database
+    $statement->closeCursor();
 
 
 
