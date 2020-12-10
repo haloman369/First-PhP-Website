@@ -4,16 +4,16 @@
     <h1>Registration</h1>
 
     <form action="index.php" method="post">
-    <input type="hidden" name="action" value="register_user">
+    <input type="hidden" name="action" value="submit_registration">
 
     <div class="form-group">
         <label for="first_name">First Name</label>
-        <input type="first_name" class="form-control" name="first_name" id="first_name">
+        <input type="first_name" class="form-control" name="firstName" id="first_name">
     </div>
 
     <div class="form-group">
         <label for="last_name">Last Name</label>
-        <input type="last_name" class="form-control" name="last_name" id="last_name">
+        <input type="last_name" class="form-control" name="lastName" id="last_name">
     </div>
 
      <div class="form-group">

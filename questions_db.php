@@ -43,6 +43,22 @@ function create_question ($title, $body, $skills, $ownerid) {
     $statement->closeCursor();
 }
 
+function update_question ($title, $body, $skills, $ownerid) {
+    global $db;
+
+    $query = 'UPDATE questions
+                (title, body, skills, ownerid)
+              VALUES
+                (:title, :body, :skills, :ownerid)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':title', $title);
+    $statement->bindValue(':body', $body);
+    $statement->bindValue(':skills', $skills);
+    $statement->bindValue(':ownerid', $ownerid);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 function delete_question ($questionId) {
     global $db;
 
@@ -52,3 +68,20 @@ function delete_question ($questionId) {
     $statement->execute();
     $statement->closeCursor();
 }
+
+
+function get_question($questionId){
+
+        global $db;
+
+        $query = "select * from questions where id=:questionId";
+        $statement = $db->prepare($query); 
+        $statement->bindValue(':questionId', $questionId);
+        $statement->execute();
+        
+        $question = $statement->fetch();
+        
+        $statement->closeCursor();
+        return $question;
+
+    }

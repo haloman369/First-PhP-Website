@@ -1,5 +1,7 @@
 <?php include('header.php'); ?>
 
+
+<a href=".?action=profile&userId=<?php echo $userId; ?>">Display Profile</a>
 <a href=".?action=display_question_form&userId=<?php echo $userId; ?>">Add Question</a>
 
 
@@ -14,13 +16,20 @@
         <tr>
             <td><?php echo $question['title']; ?></td>
             <td><?php echo $question['body']; ?></td>
-            <td>
+            <td> 
                 <form action="." method="post">
                     <input type="hidden" name="action" value="delete_question">
                     <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
                     <input type="hidden" name="userId" value="<?php echo $userId; ?>">
 
                     <input type="submit" value="Delete">
+                </form>
+                 <form action="." method="post">
+                    <input type="hidden" name="action" value="edit_question">
+                    <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
+                    <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+
+                    <input type="submit" value="Edit">
                 </form>
             </td>
         </tr>

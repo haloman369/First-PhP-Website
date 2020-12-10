@@ -1,28 +1,29 @@
 <?php include('header.php'); ?>
 
-    <h1>Ask New Question</h1>
+    <h1>Add a new Question</h1>
 
     <form action="index.php" method="post">
-        <input type="hidden" name="action" value="submit_question">
+        <input type="hidden" name="action" value="<?php echo $actionString; ?>">
         <input type="hidden" name="userId" value="<?php echo $userId; ?>">
 
         <div class="form-group">
             <label for="title">Question Title</label>
-            <input type="text" name="title">
+            <input type="text" value="<?php echo $questions['title']; ?>" name="title">
         </div>
 
         <div class="form-group">
             <label for="body">Question Body</label>
-            <input type="text" name="body">
+            <input type="text" value="<?php echo $questions['body']; ?>" name="body">
         </div>
 
 
         <div class="form-group">
             <label for="skills">Question Skills</label>
-            <input type="text" name="skills">
+            <input type="text" value="<?php echo $questions['skills']; ?>"name="skills">
         </div>
 
         <input type="submit" class="btn btn-primary" value="Add Question">
+
 
     </form>
 

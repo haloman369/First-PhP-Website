@@ -71,3 +71,19 @@ function register_user($email, $password, $firstName, $lastName, $birthday) {
 
 
     }
+
+    function get_user($userId){
+
+        global $db;
+
+        $query = "select * from accounts where id=:userId";
+        $statement = $db->prepare($query); 
+        $statement->bindValue(':userId', $userId);
+        $statement->execute();
+        
+        $user = $statement->fetch();
+        
+        $statement->closeCursor();
+        return $user;
+
+    }

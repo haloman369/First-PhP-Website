@@ -42,6 +42,13 @@ switch ($action) {
         break;
     }
 
+    case 'profile': {
+        $userId = filter_input(INPUT_GET, 'userId');
+        $user = get_user($userId);
+        include('view_profile.php');
+        break;
+    }
+
     case'submit_registration':{
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
@@ -97,7 +104,7 @@ switch ($action) {
 
             }
         register_user($email, $password, $firstName, $lastName, $birthday);
-        header('Location: .?action=display_login');
+        header('Location: .?action=show_login');
         break;
 
 
@@ -122,7 +129,8 @@ switch ($action) {
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=display_login');
         } else {
-            include('question_form.php');
+            $actionString = 'submit_question';
+            include('questions_form.php');
         }
         break;
     }
@@ -153,7 +161,41 @@ switch ($action) {
             delete_question($questionId);
             header("Location: .?action=display_questions&userId=$userId");
         }
+        break;
     }
+    
+
+
+        case 'edit_question': {
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        $userId = filter_input(INPUT_POST, 'userId');
+        if ($questionId == NULL || $userId == NULL) {
+            $error = 'All Fields are required';
+            include('error.php');
+        } else {
+            $questions= get_question($questionId);
+            $actionString = 'update_question';
+            include('questions_form.php');
+        }
+        break;
+    }
+
+     case 'update_question': {
+        $userId = filter_input(INPUT_POST, 'userId');
+        $title = filter_input(INPUT_POST, 'title');
+        $body = filter_input(INPUT_POST, 'body');
+        $skills = filter_input(INPUT_POST, 'skills');
+        if ($userId == NULL || $title == NULL || $body == NULL || $skills == NULL) {
+            $error = 'All fields are required';
+            include('error.php');
+        } else {
+            update_question($title, $body, $skills, $userId);
+            header("Location: .?action=display_questions&userId=$userId");
+        }
+
+        break;
+    }
+
 
     default: {
         $error = 'Unknown Action';
