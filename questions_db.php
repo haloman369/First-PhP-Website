@@ -43,17 +43,18 @@ function create_question ($title, $body, $skills, $ownerid) {
     $statement->closeCursor();
 }
 
-function update_question ($title, $body, $skills, $ownerid) {
+function update_question ($title, $body, $skills, $questionID) {
     global $db;
 
     $query = 'UPDATE questions
-                (title, body, skills, ownerid)
-              SET title = ':title', body = ':body', skills = ':skills''
+              SET title = :title, body = :body, skills = :skills
+              WHERE :questionID';
+            ;
     $statement = $db->prepare($query);
     $statement->bindValue(':title', $title);
     $statement->bindValue(':body', $body);
     $statement->bindValue(':skills', $skills);
-    $statement->bindValue(':ownerid', $ownerid);
+    $statement->bindValue(':id', $questionId);
     $statement->execute();
     $statement->closeCursor();
 }
