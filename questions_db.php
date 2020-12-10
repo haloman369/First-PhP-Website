@@ -48,8 +48,7 @@ function update_question ($title, $body, $skills, $ownerid) {
 
     $query = 'UPDATE questions
                 (title, body, skills, ownerid)
-              VALUES
-                (:title, :body, :skills, :ownerid)';
+              SET title = ':title', body = ':body', skills = ':skills''
     $statement = $db->prepare($query);
     $statement->bindValue(':title', $title);
     $statement->bindValue(':body', $body);
