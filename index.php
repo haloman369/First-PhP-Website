@@ -165,8 +165,20 @@ switch ($action) {
     }
     
 
+    case 'view_question': {
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        $userId = filter_input(INPUT_POST, 'userId');
+        if ($questionId == NULL || $userId == NULL) {
+            $error = 'All Fields are required';
+            include('error.php');
+        } else {
+            $questions= get_question($questionId);
+            include('display_questions.php');
+        }
+        break;
+    }
 
-        case 'edit_question': {
+    case 'edit_question': {
         $questionId = filter_input(INPUT_POST, 'questionId');
         $userId = filter_input(INPUT_POST, 'userId');
         if ($questionId == NULL || $userId == NULL) {
@@ -189,7 +201,7 @@ switch ($action) {
             $error = 'All fields are required';
             include('error.php');
         } else {
-            update_question($title, $body, $skills, $userId);
+            update_question($title, $body, $skills, $questionId);
             header("Location: .?action=display_questions&userId=$userId");
         }
 

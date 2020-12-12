@@ -50,6 +50,10 @@ function update_question ($title, $body, $skills, $questionID) {
               SET title = :title, body = :body, skills = :skills
               WHERE :questionID';
             ;
+            /*
+            update questions 
+SET title = 'sql test', body='new body', skills='new skills'
+Where id=3 */
     $statement = $db->prepare($query);
     $statement->bindValue(':title', $title);
     $statement->bindValue(':body', $body);

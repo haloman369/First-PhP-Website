@@ -31,6 +31,14 @@
 
                     <input type="submit" value="Edit">
                 </form>
+
+                 <form action="." method="post">
+                    <input type="hidden" name="action" value="view_question">
+                    <input type="hidden" name="questionId" value="<?php echo $question['id']; ?>">
+                    <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+
+                    <input type="submit" value="view">
+                </form>
             </td>
         </tr>
     <?php endforeach; ?>
