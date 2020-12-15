@@ -1,6 +1,6 @@
 <?php include('header.php'); ?>
 
-
+<a href=".?action=display_questions&userId=<?php echo $userId; ?>&listType=mine">Display Questions</a>
 
 <table>
     <tr>
@@ -18,4 +18,3 @@
             <td><?php echo $user['birthday']; ?></td>
 </table>
 
-<?php //include('footer.php'); ?>
