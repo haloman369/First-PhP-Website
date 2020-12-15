@@ -5,6 +5,7 @@
     <form action="index.php" method="post">
         <input type="hidden" name="action" value="<?php echo $actionString; ?>">
         <input type="hidden" name="userId" value="<?php echo $userId; ?>">
+        <input type="hidden" name="questionId" value="<?php echo $questions['id']; ?>">
 
         <div class="form-group">
             <label for="title">Question Title</label>

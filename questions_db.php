@@ -58,7 +58,7 @@ Where id=3 */
     $statement->bindValue(':title', $title);
     $statement->bindValue(':body', $body);
     $statement->bindValue(':skills', $skills);
-    $statement->bindValue(':id', $questionId);
+    $statement->bindValue(':questionsID', $questionID);
     $statement->execute();
     $statement->closeCursor();
 }

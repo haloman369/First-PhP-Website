@@ -173,7 +173,7 @@ switch ($action) {
             include('error.php');
         } else {
             $questions= get_question($questionId);
-            include('display_questions.php');
+            include('single_questions_view.php');
         }
         break;
     }
@@ -193,6 +193,7 @@ switch ($action) {
     }
 
      case 'update_question': {
+        $questionId = filter_input(INPUT_POST, 'questionId');
         $userId = filter_input(INPUT_POST, 'userId');
         $title = filter_input(INPUT_POST, 'title');
         $body = filter_input(INPUT_POST, 'body');
