@@ -7,7 +7,7 @@
 <th>Skills</th>
 </tr>
 
-<td><?php echo $questions['title']; ?></td>
+<td><?php echo $questions['title']; ?><br></td>
 <td><?php echo $questions['body']; ?></td>
 <td><?php echo $questions['skills']; ?></td>
 
