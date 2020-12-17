@@ -2,6 +2,7 @@
 <?php
 //require('header.php');
 require('database.php');
+require('account.php');
 require('accounts_db.php');
 require('questions_db.php');
 
@@ -26,7 +27,8 @@ switch ($action) {
             $error = 'Email and Password not included';
             include('error.php');
         } else {
-            $userId = validate_login($email, $password);
+            $user = AccountsDB::validate_login($email, $password);
+            $userId = $user->getId();
             if ($userId == false) {
                 header('Location: index.php?action=display_registration');
             } else {
