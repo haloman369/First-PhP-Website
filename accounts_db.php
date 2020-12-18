@@ -3,7 +3,7 @@
 
 class AccountsDB{
 
-    public static function validate_login($email $password){
+    public static function validate_login($email, $password){
 
         global $db;
         $query = 'SELECT * FROM accounts WHERE email = :email AND password = :password';
@@ -18,7 +18,7 @@ class AccountsDB{
 
 
         if(count($user)>0){
-            $user = new Account($user['id'], $user['email'], $user['fname'], $user['lname'], $user['phoneNumber'], $user['birthday'], $user['password'])
+            $user = new Account($user['id'], $user['email'], $user['fname'], $user['lname'], $user['phoneNumber'], $user['birthday'], $user['password']);
             return $user;
         }
         else{

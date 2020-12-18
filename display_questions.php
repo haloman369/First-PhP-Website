@@ -44,4 +44,6 @@
     <?php endforeach; ?>
 </table>
 
+<a herf=".?action=logout">Logout</a>
+
 <?php //include('footer.php'); ?>

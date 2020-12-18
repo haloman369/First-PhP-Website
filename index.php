@@ -6,6 +6,8 @@ require('account.php');
 require('accounts_db.php');
 require('questions_db.php');
 
+start_session();
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -15,9 +17,32 @@ if ($action == NULL) {
 }
 
 switch ($action) {
+    
     case 'show_login': {
-        include('login.php');
+        if ($_SESSION['userId']){
+            header('Location: .?action=display_questions');
+        } 
+        else{
+            
+            include('login.php');
+        }
         break;
+    }
+
+    case 'logout':{
+
+        destroy_session();
+        $_SESSION = array();
+
+        $name = session_name();
+        $expire = strtotime('-1 year');
+
+        $params = session_get_cookie_params();
+
+        setcookie($name, '', $expire, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+
+        header('Location: .');
+        break;  
     }
 
     case 'validate_login': {
@@ -29,10 +54,11 @@ switch ($action) {
         } else {
             $user = AccountsDB::validate_login($email, $password);
             $userId = $user->getId();
+            $_SESSION['userId'] = $userId;
             if ($userId == false) {
                 header('Location: index.php?action=display_registration');
             } else {
-                header("Location: .?action=display_questions&userId=$userId");
+                header("Location: .?action=display_questions");
             }
         }
 
@@ -114,7 +140,7 @@ switch ($action) {
     }
 
     case 'display_questions': {
-        $userId = filter_input(INPUT_GET, 'userId');
+        $userId = $_SESSION['userId'];
         $listType = filter_input(INPUT_GET, 'listType');
         if ($userId == NULL || $userId < 0) {
             header('Location: .?action=display_login');
