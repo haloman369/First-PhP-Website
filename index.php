@@ -6,7 +6,7 @@ require('account.php');
 require('accounts_db.php');
 require('questions_db.php');
 
-start_session();
+session_start();
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -54,11 +54,11 @@ switch ($action) {
         } else {
             $user = AccountsDB::validate_login($email, $password);
             $userId = $user->getId();
-            $_SESSION['userId'] = $userId;
             if ($userId == false) {
                 header('Location: index.php?action=display_registration');
             } else {
-                header("Location: .?action=display_questions");
+                $_SESSION['userId'] = $userId;
+                header('Location: .?action=display_questions');
             }
         }
 
